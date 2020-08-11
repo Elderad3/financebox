@@ -1,0 +1,95 @@
+<page-container [titulo]="titulo">
+  <dialog-mensage [display]="display" [msgContent]="msgContent" (fechaDialogo)="fecharDialogoItem($event)">
+  </dialog-mensage>
+
+  <div class="p-grid">
+    <div class="p-col-12 p-md-12 p-lg-12">
+      <button pButton type="button" icon="pi pi-plus" label="Inserir" class="ui-button-raised"
+        (click)="prepararIncersaoItem()"></button>
+    </div>
+
+    <div class="p-col-12 p-md-12 p-lg-12"></div>
+    <p-table [columns]="cols" [value]="contas" resizableColumns="true">
+      <ng-template pTemplate="header" let-columns>
+        <tr>
+          <th *ngFor="let col of cols">
+            {{col.header}}
+          </th>
+          <th style="width:15%"></th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-rowData>
+        <tr [pSelectableRow]="rowData">
+          <td *ngFor="let col of cols" class="ui-resizable-column" [ngSwitch]="col.field">
+            <span *ngSwitchCase="'banco.nome'"><img src="assets/img/bancos/{{rowData.banco.codigo}}.png"
+                style="width:30px;vertical-align:middle" /> {{ carregarObjetoColuna(rowData, col) }}</span>
+            <span *ngSwitchCase="'agencia'">{{rowData[col.field]}}</span>
+            <span *ngSwitchCase="'numeroConta'">{{rowData[col.field]}}</span>
+          </td>
+          <td style="width:15%">
+            <button pButton type="button" icon="pi pi-pencil" class="ui-button-raised ui-button-warning"
+              (click)="editarConta(rowData)"></button>
+            <button pButton type="button" icon="pi pi-trash" class="ui-button-raised ui-button-danger"
+              (click)="excluirConta(rowData)"></button>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="summary">
+      </ng-template>
+      <ng-template pTemplate="emptymessage" let-columns>
+        <tr>
+          <td [attr.colspan]="columns.length">
+            Nada encontrado aqui!
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+
+
+  <!-- Diálogo de cadastro de itens da tabela -->
+
+
+  <p-dialog [header]="headerModal" [(visible)]="displayDialog" modal="modal" [responsive]="true" showEffect="fade"
+    [style]="{width: '20vw'}" [baseZIndex]="10000">
+    <form autocomplete="off" #contaForm="ngForm" id="contaForm" [ngFormOptions]="{updateOn:'blur'}">
+      <div class="p-grid">
+        <div class="p-col-12 p-md-12 p-lg-12 ui-fluid">
+          <label>Banco: </label>
+          <p-dropdown [options]="bancosSelecao" name="banco" [(ngModel)]="conta.banco" placeholder="Selecione">
+            <ng-template let-item pTemplate="selectedItem">
+              <img src="assets/img/bancos/{{item.value.codigo}}.png" class="imgItemSelecionado" />
+              <span class="dpLabelItemSelecionado">{{item.label}}</span>
+            </ng-template>
+            <ng-template let-item2 pTemplate="item">
+              <div class="dpItemDiv">
+                <img src="assets/img/bancos/{{item2.value.codigo}}.png" class="imgItem" />
+                <div class="dpLabelItem">{{item2.label}}</div>
+              </div>
+            </ng-template>
+          </p-dropdown>
+        </div>
+        <div class="p-col-12 p-md-12 p-lg-12 ui-fluid">
+          <label>Agência: </label>
+          <input pInputText type="text" name="agencia" [(ngModel)]="conta.agencia" #agencia="ngModel" required
+            minlength="3" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+          <validate [control]="agencia" error="required" text="A agência deve ser informada"></validate>
+          <validate [control]="agencia" error="minlength" text="O mínimo é 3 números"></validate>
+        </div>
+        <div class="p-col-12 p-md-12 p-lg-12 ui-fluid">
+          <label>Conta: </label>
+          <input pInputText type="text" name="numeroConta" [(ngModel)]="conta.numeroConta" #numeroConta="ngModel"
+            required minlength="3" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+          <validate [control]="numeroConta" error="required" text="O número da conta deve ser informado"></validate>
+          <validate [control]="numeroConta" error="minlength" text="O mínimo é 3 números"></validate>
+        </div>
+        <div class="p-col-12 p-md-12 p-lg-12" dir="rtl">
+          <button type="button" pButton icon="pi pi-check" class="ui-button-raised" [disabled]="contaForm.form.invalid"
+            (click)="validarContaExistente()" label="Confirmar"></button>
+          <button type="button" pButton icon="pi pi-times" class="ui-button-raised ui-button-warning"
+            (click)="cancelar()" label="Cancelar"></button>
+        </div>
+      </div>
+    </form>
+  </p-dialog>
+</page-container>

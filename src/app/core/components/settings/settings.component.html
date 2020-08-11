@@ -1,0 +1,8 @@
+<div *ngIf="form">
+  <pre>
+    <p>
+      Valores do Form:{{ form.value | json}}
+    </p>
+    <p>O Form está válido? {{form.valid ? "Sim" : "Não" }}</p>
+  </pre>
+</div>

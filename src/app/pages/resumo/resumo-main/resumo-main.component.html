@@ -1,0 +1,70 @@
+<page-container [titulo]="titulo">
+  <div class="p-grid">
+    <div class="p-col-12 p-md-12 p-lg-12">
+      <form autocomplete="off" #filtroForm="ngForm" id="filtroForm">
+        <div class="p-col-12 p-md-12 p-lg-12">
+          Ano:
+          <p-dropdown [options]="anos" name="ano" [(ngModel)]="anoFiltro" optionLabel="codigo"
+            (onChange)="inicializar()">
+          </p-dropdown>
+          Mês:
+          <p-dropdown [options]="meses" name="mes" [(ngModel)]="mesFiltro" optionLabel="nome"
+            (onChange)="inicializar()">
+          </p-dropdown>
+          <button pButton type="button" (click)="limparFiltro()"
+            [disabled]="anoFiltro === filtrarAnoAtual() && mesFiltro === filtrarMesAtual()"
+            label="Limpar Filtro"></button>
+        </div>
+      </form>
+    </div>
+    <div class="p-col p-col-align-start"></div>
+    <div *ngIf="carregandoDados" class="p-col p-col-align-center">
+      <h5>Carregando...</h5>
+      <p-progressSpinner></p-progressSpinner>
+    </div>
+    <div class="p-col p-col-align-end"></div>
+  </div>
+  <div *ngIf="!carregandoDados">
+    <div class="p-grid">
+      <div class="p-col-12 p-md-6 p-lg-6">
+        <p-card>
+          <label>Receitas e Despesas no mês</label>
+          <p-chart type="bar" [data]="receitaDespesaData" [options]="chartOptions"></p-chart>
+        </p-card>
+      </div>
+      <div class="p-col-12 p-md-6 p-lg-6">
+        <p-card>
+          <div class="receitaCor">
+            <h3>Receitas no mês: R$ {{totalReceitaMes  | number:'1.2-2'}}</h3>
+          </div>
+          <div class="despesaCor">
+            <h3>Despesas no mês: R$ {{totalDespesaMes * -1 | number:'1.2-2'}}</h3>
+          </div>
+        </p-card>
+      </div>
+    </div>
+    <div class="p-grid">
+      <div class="p-col-12 p-md-6 p-lg-6">
+        <p-card>
+          <label>Receitas no Mês </label>
+          <p-chart type="doughnut" [data]="receitaData"></p-chart>
+        </p-card>
+      </div>
+      <div class="p-col-12 p-md-6 p-lg-6">
+        <p-card>
+          <label>Despesas no Mês </label>
+          <p-chart type="doughnut" [data]="despesaData"></p-chart>
+        </p-card>
+      </div>
+    </div>
+
+    <div class="p-grid">
+      <div class="p-col-12 p-md-12 p-lg-12">
+        <p-card>
+          <label>Resumo de gastos no ano </label>
+          <p-chart type="bar" height="30vh" [data]="despesaAnoData" [options]="chartOptions"></p-chart>
+        </p-card>
+      </div>
+    </div>
+  </div>
+</page-container>

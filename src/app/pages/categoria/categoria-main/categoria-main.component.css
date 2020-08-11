@@ -1,0 +1,182 @@
+.badge{
+  border-radius: 2px;
+    padding: .25em .5em;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: .3px;
+    margin-left: 10px;
+}
+
+.nao-classificado{
+  background-color: #50514F;
+  color: #ffffff;
+}
+.imposto{
+  background-color: #003058;
+  color: #ffffff;
+}
+.lanc-entre-contas{
+  background-color: #28326d;
+  color: #ffffff;
+}
+
+.moradia{
+  background-color: #5F0F40;
+  color: #ffffff;
+}
+.contas-residenciais{
+  background-color: #463f3a;
+  color: #ffffff;
+}
+.educacao{
+  background-color: #001233;
+  color: #ffffff;
+}
+.transporte{
+  background-color: #7A4FFA;
+  color: #ffffff;
+}
+.taxas-bancarias{
+  background-color: #F0FA94;
+}
+.cuidados-pessoais{
+  background-color: #7F052B;
+  color: #ffffff;
+}
+.servicos{
+  background-color: #BFA9B8;
+  color: #ffffff;
+}
+.viagens{
+  background-color: #7F052B;
+  color: #ffffff;
+}
+.presentes-doacoes{
+  background-color: #86A9B3;
+  color: #ffffff;
+}
+.familia-filhos{
+  background-color: #A259A2;
+  color: #ffffff;
+}
+.despesas-trabalho{
+  background-color: #340B15;
+  color: #ffffff;
+}
+.impostos{
+  background-color: #FC781B;
+  color: #ffffff;
+}
+.outros-gastos{
+  background-color: #8F79F4;
+  color: #ffffff;
+}
+.juros-de-cartao{
+  background-color: #5553C1;
+  color: #ffffff;
+}
+.crediario{
+  background-color: #CF850E;
+  color: #ffffff;
+}
+.credito-consignado{
+  background-color: #D37343;
+  color: #ffffff;
+}
+.carne{
+  background-color: #7F7599;
+  color: #ffffff;
+}
+.outros-emprestimos{
+  background-color: #B47D3B;
+  color: #ffffff;
+}
+.pagamento-cartao{
+  background-color: #FA6643;
+  color: #ffffff;
+}
+.resgate{
+  background-color: #9adce3;
+  color: #ffffff;
+}
+.aplicacao{
+  background-color: #071650;
+  color: #ffffff;
+}
+.transferencia{
+  background-color: #0e445f;
+  color: #ffffff;
+}
+
+
+.tv-internet-telefone{
+  background-color: #9A031E ;
+  color: #ffffff;
+
+}
+.cheque-especial{
+  background-color: #FB8B24;
+  color: #ffffff;
+}
+.saques{
+  background-color: #E36414;
+  color: #ffffff;
+}
+.mercado{
+  background-color: #0F4C5C;
+  color: #ffffff;
+}
+.lazer{
+  background-color: #F25F5C;
+  color: #ffffff;
+}
+.saude{
+  background-color: #69306d ;
+  color: #ffffff;
+}
+.bares-e-restaurantes{
+  background-color: #003049;
+  color: #ffffff;
+}
+.compras{
+  background-color: #FCBF55 ;
+  color: #ffffff;
+}
+.rendimento{
+  background-color: #9bc53d;
+  color: #ffffff;
+}
+.outras-rendas{
+  background-color: #247BA0 ;
+  color: #ffffff;
+}
+
+.bonus{
+  background-color: #bfd200 ;
+  color: #ffffff;
+}
+
+.emprestimo-renda{
+  background-color: #70C1B3 ;
+  color: #ffffff;
+}
+.juros{
+  background-color: #825483 ;
+  color: #ffffff;
+
+}
+.resgate{
+  background-color:  #6c1981;
+  color: #ffffff;
+
+}
+.remuneracao{
+  background-color: #0da312;
+  color: #ffffff;
+}
+
+.estudos{
+  background-color: #a8831c;
+  color: #ffffff;
+}

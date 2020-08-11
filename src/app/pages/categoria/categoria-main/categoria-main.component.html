@@ -1,0 +1,80 @@
+<page-container [titulo]="titulo">
+
+  <div class="p-grid">
+    <div class="p-col-12 p-md-12 p-lg-12">
+      <button pButton type="button" icon="pi pi-plus" label="Inserir" class="ui-button-raised"
+        (click)="prepararIncersaoItem()"></button>
+    </div>
+
+    <div class="p-col-12 p-md-12 p-lg-12"></div>
+    <p-table [columns]="cols" [value]="categorias" resizableColumns="true">
+      <ng-template pTemplate="header" let-columns>
+        <tr>
+          <th *ngFor="let col of cols" pResizableColumn [pSortableColumn]="col.field">
+            {{col.header}}
+            <p-sortIcon [field]="col.field"></p-sortIcon>
+          </th>
+          <th style="width:15%"></th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-rowData>
+        <tr [pSelectableRow]="rowData">
+          <td *ngFor="let col of cols" class="ui-resizable-column" [ngSwitch]="col.field">
+            <span [class]="'badge '+ rowData.classe" *ngSwitchCase="'nome'">
+              {{rowData[col.field]}}</span>
+            <span *ngSwitchCase="'grupo.nome'">{{ carregarObjetoColuna(rowData, col) }}</span>
+          </td>
+          <td style="width:15%">
+            <button pButton type="button" icon="pi pi-pencil" class="ui-button-raised ui-button-warning"
+              (click)="editarCategoria(rowData)"></button>
+            <button pButton type="button" icon="pi pi-trash" class="ui-button-raised ui-button-danger"
+              (click)="excluirCategoria(rowData)"></button>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="summary">
+      </ng-template>
+      <ng-template pTemplate="emptymessage" let-columns>
+        <tr>
+          <td [attr.colspan]="columns.length">
+            Nada encontrado aqui!
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+
+
+  <!-- Diálogo de cadastro de itens da tabela [ngFormOptions]="{updateOn:'blur'}"-->
+
+
+  <p-dialog [header]="headerModal" [(visible)]="displayDialog" modal="modal" [responsive]="true" showEffect="fade"
+    [style]="{width: '20vw'}">
+    <form autocomplete="off" #categoriaForm="ngForm" id="categoriaForm">
+      <div class="p-grid">
+        <div class="p-col-12 p-md-12 p-lg-12 ui-fluid">
+          <label>Grupo: </label>
+          <p-dropdown name="grupo" [options]="grupos" placeholder="Selecione" [(ngModel)]="categoria.grupo"
+            optionLabel="nome" required #grupo="ngModel" appendTo="body">
+          </p-dropdown>
+        </div>
+        <div class="p-col-12 p-md-12 p-lg-12 ui-fluid">
+          <label>Nome: </label>
+          <input pInputText type="text" name="nome" [(ngModel)]="categoria.nome" #nome="ngModel" required minlength="3"
+            #nome2>
+          <validate [control]="nome" error="required" text="O nome deve ser informado"></validate>
+          <validate [control]="nome" error="minlength" text="O mínimo é 3 letras"></validate>
+        </div>
+        <div class="p-col-12 p-md-12 p-lg-12">
+          <button type="button" pButton icon="pi pi-check" class="ui-button-raised"
+            [disabled]="categoriaForm.form.invalid" (click)="validarCategoriaExistente()" label="Confirmar"></button>
+          <button type="button" pButton icon="pi pi-times" class="ui-button-raised ui-button-warning"
+            (click)="cancelar()" label="Cancelar"></button>
+        </div>
+        <div class="p-col-12 p-md-12 p-lg-12 ui-fluid">
+          <!-- <app-settings [form]="categoriaForm"></app-settings> -->
+        </div>
+      </div>
+    </form>
+  </p-dialog>
+</page-container>
