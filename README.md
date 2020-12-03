@@ -1,4 +1,5 @@
 # Financebox
+Front-End do Gerenciador de finanças pessoais desenvolvido para o projeto aplicado do MBA em desenvolvimento Full Stack IGTI (Instituto de Gestão e Tecnologia da Informação).
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.2.2.
 
